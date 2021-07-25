@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "allowImportExportEverywhere": false
+  },
+  "plugins": ["@typescript-eslint", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:playwright/playwright-test"
+  ],
+  "rules": {
+    "no-unused-vars": "warn",
+    "no-console": "error",
+    "no-mixed-spaces-and-tabs": "warn",
+    "linebreak-style": ["off", "unix"],
+    "semi": ["error", "always"],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 100
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "objectsInObjects": false,
+        "arraysInObjects": false
+      }
+    ],
+    "playwright/missing-playwright-await": ["error", { "customMatchers": ["toBeCustomThing"] }]
+  }
+}
