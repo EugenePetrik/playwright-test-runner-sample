@@ -1,0 +1,52 @@
+export const articles = {
+  new: {
+    root: 'div.editor-page',
+    titleInput: '[data-qa-id=editor-title]',
+    descriptionInput: '[data-qa-id=editor-description]',
+    bodyInput: '[data-qa-id=editor-body] textarea',
+    tagsInput: '[data-qa-id=editor-tags]',
+    publishArticleButton: '[data-qa-id=editor-publish]',
+  },
+  edit: {
+    root: 'div.editor-page',
+    titleInput: '[data-qa-id=editor-title]',
+    descriptionInput: '[data-qa-id=editor-description]',
+    bodyInput: '[data-qa-id=editor-body] textarea',
+    tagsInput: '[data-qa-id=editor-tags]',
+    addedTags: 'span.tag-default',
+    publishArticleButton: '[data-qa-id=editor-publish]',
+  },
+  details: {
+    root: '[data-qa-id=article-page]',
+    banner: {
+      title: '[data-qa-id=article-title]',
+      authorAvatar: 'div.banner img[data-qa-type=author-avatar]',
+      authorName: 'div.banner [data-qa-type=author-name]',
+      articleDate: 'div.banner [data-qa-type=article-date]',
+      editArticleButton: 'div.banner [data-qa-id=article-edit]',
+      deleteArticleButton: 'div.banner [data-qa-id=article-delete]',
+    },
+    content: {
+      body: '[data-qa-id=article-body] p',
+      tags: '[data-qa-id="article-tags"] [data-qa-type="article-tag"] a',
+      authorAvatar: 'div.page img[data-qa-type=author-avatar]',
+      authorName: 'div.page [data-qa-type=author-name]',
+      articleDate: 'div.page [data-qa-type=article-date]',
+      editArticleButton: 'div.page [data-qa-id=article-edit]',
+      deleteArticleButton: 'div.page [data-qa-id=article-delete]',
+    },
+    addComment: {
+      writeCommentInput: 'form.comment-form textarea',
+      authorAvatar: 'form.comment-form img.comment-author-img',
+      postCommentButton: 'form.comment-form button',
+    },
+    comment: {
+      card: 'div.card',
+      body: 'div.card-block p',
+      authorAvatar: 'div.card-footer img.comment-author-img',
+      authorName: 'div.card-footer a.comment-author:nth-child(2)',
+      datePosted: 'div.card-footer span.date-posted',
+      deleteComment: 'div.card-footer i.ion-trash-a',
+    },
+  },
+};
