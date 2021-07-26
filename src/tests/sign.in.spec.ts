@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import { env } from '../configs';
+import { SignInPage } from '../pageobjects/sign.in.page';
 import { HomePage } from '../pageobjects/home';
-import { SignUpPage } from '../pageobjects/sign.up.page';
+import { createUser } from '../utils/helpers';
 import type { IUser } from '../utils/types';
 
-test.describe('Sign up', () => {
+test.describe('Sign in', () => {
   let homePage: HomePage;
-  let signUpPage: SignUpPage;
+  let signInPage: SignInPage;
 
   const user: IUser = {
     email: `test${new Date().getTime() / 1000}@example.com`,
@@ -15,32 +16,33 @@ test.describe('Sign up', () => {
     username: faker.internet.userName().replace(/[_'.]/g, '').toLowerCase().slice(0, 10),
   };
 
+  test.beforeAll(async () => {
+    await createUser(user);
+  });
+
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
-    signUpPage = new SignUpPage(page);
+    signInPage = new SignInPage(page);
 
-    await signUpPage.open();
+    await signInPage.open();
   });
 
   test('should open the page', async () => {
-    const pageUrl = await signUpPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/register');
-
-    const pageTitle = await signUpPage.getPageTitle();
+    const pageTitle = await signInPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
 
-    const pageHeader = await signUpPage.getPageHeader();
-    expect(pageHeader).toEqual('Sign up');
+    const pageHeader = await signInPage.getPageHeader();
+    expect(pageHeader).toEqual('Sign in');
 
-    const accountLinkText = await signUpPage.getHaveAnAccountLink();
-    expect(accountLinkText).toEqual('Have an account?');
+    const accountLinkText = await signInPage.getNeedAnAccountLink();
+    expect(accountLinkText).toEqual('Need an account?');
 
-    const accountLinkHreAttr = await signUpPage.getHaveAnAccountLinkHrefAttr();
-    expect(accountLinkHreAttr).toEqual('/login');
+    const accountLinkHreAttr = await signInPage.getNeedAnAccountLinkHrefAttr();
+    expect(accountLinkHreAttr).toEqual('/register');
   });
 
-  test('should sign up successfully', async () => {
-    await signUpPage.signUpAs(user);
+  test('should log in successfully', async () => {
+    await signInPage.signInAs(user);
 
     const pageUrl = await homePage.getPageUrl();
     expect(pageUrl).toEqual(env.APP_URL + '/');
