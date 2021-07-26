@@ -3,7 +3,7 @@ import faker from 'faker';
 import { env } from '../configs';
 import { SignInPage } from '../pageobjects/sign.in.page';
 import { HomePage } from '../pageobjects/home';
-import { createUser } from '../utils/helpers';
+import { createUser } from '../utils/api';
 import type { IUser } from '../utils/types';
 
 test.describe('Sign in', () => {
@@ -28,6 +28,9 @@ test.describe('Sign in', () => {
   });
 
   test('should open the page', async () => {
+    const pageUrl = await signInPage.getPageUrl();
+    expect(pageUrl).toEqual(env.APP_URL + '/login');
+
     const pageTitle = await signInPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
 
