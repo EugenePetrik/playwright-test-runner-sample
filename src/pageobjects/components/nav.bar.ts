@@ -2,7 +2,7 @@ import type { Page } from '@playwright/test';
 import { logger } from '../../configs';
 import { navBar } from '../../elements/components/nav.bar';
 
-export class NavBar {
+export class NavBarComponent {
   readonly page: Page;
 
   constructor(page: Page) {

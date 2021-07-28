@@ -1,18 +1,14 @@
 import type { Page } from '@playwright/test';
 import { logger } from '../../configs';
 import { BasePage } from '../base.page';
-import { NavBar } from '../components';
 import { home } from '../../elements/home';
 
 export class HomePage extends BasePage {
   readonly page: Page;
-  readonly navBar: NavBar;
 
   constructor(page: Page) {
     super(page);
     this.page = page;
-
-    this.navBar = new NavBar(this.page);
   }
 
   public async open(): Promise<void> {

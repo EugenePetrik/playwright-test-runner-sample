@@ -1,11 +1,16 @@
 import type { Page } from '@playwright/test';
 import { logger, timeouts } from '../configs';
+import { FooterComponent, NavBarComponent } from './components';
 
 export class BasePage {
   readonly page: Page;
+  readonly navBar: NavBarComponent;
+  readonly footer: FooterComponent;
 
   constructor(page: Page) {
     this.page = page;
+    this.navBar = new NavBarComponent(this.page);
+    this.footer = new FooterComponent(this.page);
   }
 
   protected async open(path: string): Promise<void> {
