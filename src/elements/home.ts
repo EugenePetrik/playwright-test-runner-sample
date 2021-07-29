@@ -1,6 +1,5 @@
 export const home = {
   root: 'div.home-page',
-  articlePreview: 'div.article-preview',
   banner: {
     name: 'div.banner h1.logo-font',
     description: 'div.banner p',

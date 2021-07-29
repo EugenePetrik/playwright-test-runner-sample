@@ -15,12 +15,4 @@ export class HomePage extends BasePage {
     logger.debug('Open the Home page');
     await super.open('/');
   }
-
-  public async waitHomePageLoaded(): Promise<void> {
-    logger.debug('Wait until Home page is displayed');
-
-    await this.page.waitForSelector(home.root);
-    await this.page.waitForSelector(home.tabs.globalFeed);
-    await this.page.waitForSelector(home.articlePreview);
-  }
 }
