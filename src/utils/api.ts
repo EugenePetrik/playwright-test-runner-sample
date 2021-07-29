@@ -9,7 +9,7 @@ export async function createUser(user: IUser): Promise<UserResponse> {
 }
 
 export async function signInUser(page: Page, user: IUser): Promise<void> {
-  logger.debug(`Sign in user via API. Get JWT Token for user - ${user.email}`);
+  logger.debug(`Sign in user via API with - ${JSON.stringify(user)}`);
   const jwtToken = await ApiClient.unauthorized().user.login(user);
 
   if (jwtToken) {
@@ -128,4 +128,14 @@ export async function createArticleWithComment(
   await client.comment.createComment(articleSlug, comment);
 
   return articleSlug;
+}
+
+export async function deleteArticle(articleSlug: string, user: IUser): Promise<void> {
+  logger.debug(`Sign in user via API with - ${JSON.stringify(user)}`);
+  const client = await ApiClient.loginAs(user);
+
+  logger.debug(`Delete an article via API with slug - ${articleSlug}`);
+  await client.article.deleteArticle(articleSlug);
+
+  logger.debug(`Article with slug - ${articleSlug} removed`);
 }
