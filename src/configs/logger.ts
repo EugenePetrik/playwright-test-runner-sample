@@ -10,5 +10,10 @@ export const logger = winston.createLogger({
       level: 'debug',
     }),
   ],
-  format: winston.format.simple(),
+  format: winston.format.combine(
+    winston.format.timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss',
+    }),
+    winston.format.simple(),
+  ),
 });
