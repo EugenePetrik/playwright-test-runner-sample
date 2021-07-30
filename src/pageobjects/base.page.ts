@@ -9,8 +9,8 @@ export class BasePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.navBar = new NavBarComponent(this.page);
-    this.footer = new FooterComponent(this.page);
+    this.navBar = new NavBarComponent(page);
+    this.footer = new FooterComponent(page);
   }
 
   protected async open(path: string): Promise<void> {

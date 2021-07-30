@@ -9,10 +9,10 @@ export class NavBarComponent {
     this.page = page;
   }
 
-  public async isBrandLogoVisible(): Promise<boolean> {
-    const isBrandLogoVisible = await this.page.isVisible(navBar.brandLogo);
-    logger.debug(`Brand Logo is ${isBrandLogoVisible ? 'visible' : 'not visible'} in Navigation`);
-    return isBrandLogoVisible;
+  public async isBrandLogoDisplayed(): Promise<boolean> {
+    const isBrandLogoDisplayed = await this.page.isVisible(navBar.brandLogo);
+    logger.debug(`Brand Logo is ${isBrandLogoDisplayed ? 'visible' : 'not visible'} in Navigation`);
+    return isBrandLogoDisplayed;
   }
 
   public async getBrandLogoLink(): Promise<string> {

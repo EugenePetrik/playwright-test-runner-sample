@@ -12,8 +12,8 @@ export class ProfilePage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.page = page;
-    this.myArticles = new MyArticles(this.page);
-    this.favoritedArticles = new FavoritedArticles(this.page);
+    this.myArticles = new MyArticles(page);
+    this.favoritedArticles = new FavoritedArticles(page);
   }
 
   public async open(username: string): Promise<void> {
