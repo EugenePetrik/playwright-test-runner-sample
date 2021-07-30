@@ -30,6 +30,7 @@
     "@types/tough-cookie": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.4",
     "@typescript-eslint/parser": "^4.28.4",
+    "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
     "envalid": "^7.1.1",
     "eslint": "^7.31.0",
