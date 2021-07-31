@@ -56,4 +56,17 @@ export class BasePage {
   public async pauseTestExecution(): Promise<void> {
     await this.page.pause();
   }
+
+  async mockUserResponse(data: any): Promise<void> {
+    logger.debug(`Mock API data for the User request - /api/user/`);
+
+    await this.page.route('**/api/user/', route => {
+      route.fulfill({
+        status: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        contentType: 'application/json; charset=utf-8',
+        body: JSON.stringify(data),
+      });
+    });
+  }
 }
