@@ -46,4 +46,17 @@ export class ProfilePage extends BasePage {
     );
     return isEditProfileButtonVisible;
   }
+
+  async mockProfilesResponse(data: any): Promise<void> {
+    logger.debug(`Mock API data for the User request - /api/profiles/`);
+
+    await this.page.route('**/api/profiles/**', route => {
+      route.fulfill({
+        status: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        contentType: 'application/json; charset=utf-8',
+        body: JSON.stringify(data),
+      });
+    });
+  }
 }
