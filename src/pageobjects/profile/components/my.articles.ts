@@ -14,7 +14,11 @@ export class MyArticles {
 
   public async clickMyArticlesTab(): Promise<void> {
     logger.debug('Click on the "My Articles" tab on the Profile page');
-    await this.page.click(profile.tabs.myArticles);
+
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(profile.tabs.myArticles),
+    ]);
   }
 
   async mockMyArticlesResponse(data: any): Promise<void> {

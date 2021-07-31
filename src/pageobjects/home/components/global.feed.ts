@@ -14,8 +14,8 @@ export class GlobalFeed {
 
   public async clickGlobalFeedTab(): Promise<void> {
     logger.debug('Click on the "Global Feed" tab on the Home page');
-    await this.page.click(home.tabs.globalFeed);
-    await this.page.waitForTimeout(1000);
+
+    await Promise.all([this.page.waitForNavigation(), await this.page.click(home.tabs.globalFeed)]);
   }
 
   async mockGlobalFeedResponse(data: any): Promise<void> {

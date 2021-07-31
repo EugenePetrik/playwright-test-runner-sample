@@ -6,10 +6,10 @@
       "body": "Mock My Articles Feed response",
       "createdAt": "2021-06-01T17:58:09.158Z",
       "updatedAt": "2021-06-01T17:58:09.158Z",
-      "tagList": [],
+      "tagList": ["javascript", "testing", "webdriverio"],
       "description": "Mock Favorited Articles Feed response",
       "author": {
-        "username": "eugene_13",
+        "username": "playground",
         "bio": null,
         "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
         "following": false
@@ -23,12 +23,12 @@
       "body": "Mock My Articles Feed response",
       "createdAt": "2021-06-01T17:58:09.158Z",
       "updatedAt": "2021-06-01T17:58:09.158Z",
-      "tagList": [],
+      "tagList": ["javascript", "testing", "webdriverio"],
       "description": "Mock Favorited Articles Feed response",
       "author": {
-        "username": "eugene_13",
+        "username": "playground",
         "bio": null,
-        "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
+        "image": "https://media.bitdegree.org/storage/media/images/2018/12/node-js-interview-questions-logo-2-266x300.png",
         "following": false
       },
       "favorited": true,
@@ -40,10 +40,10 @@
       "body": "Mock My Articles Feed response",
       "createdAt": "2021-06-01T17:58:09.158Z",
       "updatedAt": "2021-06-01T17:58:09.158Z",
-      "tagList": [],
+      "tagList": ["javascript", "testing", "webdriverio"],
       "description": "Mock Favorited Articles Feed response",
       "author": {
-        "username": "eugene_13",
+        "username": "playground",
         "bio": null,
         "image": "https://static.productionready.io/images/smiley-cyrus.jpg",
         "following": false

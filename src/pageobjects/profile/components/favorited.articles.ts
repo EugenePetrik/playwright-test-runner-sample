@@ -14,8 +14,11 @@ export class FavoritedArticles {
 
   public async clickFavoritedArticlesTab(): Promise<void> {
     logger.debug('Click on the "Favorited Articles" tab on the Profile page');
-    await this.page.click(profile.tabs.favoritedArticles);
-    await this.page.waitForTimeout(1000);
+
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(profile.tabs.favoritedArticles),
+    ]);
   }
 
   async mockFavoritedArticlesResponse(data: any): Promise<void> {

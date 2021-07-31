@@ -14,8 +14,8 @@ export class YourFeed {
 
   public async clickYourFeedTab(): Promise<void> {
     logger.debug('Click on the "Global Feed" tab on the Home page');
-    await this.page.click(home.tabs.yourFeed);
-    await this.page.waitForTimeout(1000);
+
+    await Promise.all([this.page.waitForNavigation(), await this.page.click(home.tabs.yourFeed)]);
   }
 
   public async isYourFeedTabDisplayed(): Promise<boolean> {
