@@ -5,7 +5,7 @@ import { createUser, signInUser } from '../../utils/api';
 import type { IUser } from '../../utils/types';
 import userResponse from '../../data/mock/user.json';
 
-test.describe('Create a new article - snapshots', () => {
+test.describe('Create Article page - snapshots', () => {
   let newArticlePage: NewArticlePage;
 
   const user: IUser = {

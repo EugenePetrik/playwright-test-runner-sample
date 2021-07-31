@@ -1,13 +1,14 @@
 import { expect, test } from '@playwright/test';
 import faker from 'faker';
-import { EditArticlePage } from '../../pageobjects/article';
+import { ArticleDetailsPage } from '../../pageobjects/article';
 import { createUser, createArticle, signInUser } from '../../utils/api';
 import type { IArticle, IUser } from '../../utils/types';
 import userResponse from '../../data/mock/user.json';
-import editArticleResponse from '../../data/mock/article.json';
+import detailsArticleResponse from '../../data/mock/article.json';
+import commentsResponse from '../../data/mock/comments.json';
 
-test.describe('Edit Article page - snapshots', () => {
-  let editArticlePage: EditArticlePage;
+test.describe('Article Details page - snapshots', () => {
+  let articleDetailsPage: ArticleDetailsPage;
   let articleSlug: string;
 
   const user: IUser = {
@@ -29,15 +30,16 @@ test.describe('Edit Article page - snapshots', () => {
   });
 
   test.beforeEach(async ({ page }) => {
-    editArticlePage = new EditArticlePage(page);
+    articleDetailsPage = new ArticleDetailsPage(page);
 
     await signInUser(page, user);
-    await editArticlePage.mockUserResponse(userResponse);
-    await editArticlePage.mockEditArticleResponse(editArticleResponse);
-    await editArticlePage.open(articleSlug);
+    await articleDetailsPage.mockUserResponse(userResponse);
+    await articleDetailsPage.mockDetailsArticleResponse(detailsArticleResponse);
+    await articleDetailsPage.comment.mockCommentsResponse(commentsResponse);
+    await articleDetailsPage.open(articleSlug);
   });
 
   test('should open the page', async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot('edit-article-page.png', { threshold: 0.1 });
+    expect(await page.screenshot()).toMatchSnapshot('details-article-page.png', { threshold: 0.1 });
   });
 });

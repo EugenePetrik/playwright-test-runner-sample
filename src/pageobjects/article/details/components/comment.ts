@@ -69,4 +69,17 @@ export class Comment {
       await this.page.click(articles.details.comment.deleteComment),
     ]);
   }
+
+  async mockCommentsResponse(data: any): Promise<void> {
+    logger.debug(`Mock API data for the Comment request - /api/articles/**/comments`);
+
+    await this.page.route('**/api/articles/**/comments', route => {
+      route.fulfill({
+        status: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        contentType: 'application/json; charset=utf-8',
+        body: JSON.stringify(data),
+      });
+    });
+  }
 }
