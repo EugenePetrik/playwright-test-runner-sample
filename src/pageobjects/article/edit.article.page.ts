@@ -80,4 +80,17 @@ export class EditArticlePage extends BasePage {
       await this.page.click(articles.edit.publishArticleButton),
     ]);
   }
+
+  async mockEditArticleResponse(data: any): Promise<void> {
+    logger.debug(`Mock API data for the Edit Article request - /api/articles/`);
+
+    await this.page.route('**/api/articles/**', route => {
+      route.fulfill({
+        status: 200,
+        headers: { 'Access-Control-Allow-Origin': '*' },
+        contentType: 'application/json; charset=utf-8',
+        body: JSON.stringify(data),
+      });
+    });
+  }
 }
