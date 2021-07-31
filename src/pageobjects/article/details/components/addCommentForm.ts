@@ -51,6 +51,10 @@ export class AddCommentForm {
     logger.debug(`Add comment with - ${JSON.stringify(comment)}`);
 
     await this.page.fill(articles.details.addComment.writeCommentInput, body);
-    await this.page.click(articles.details.addComment.postCommentButton);
+
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(articles.details.addComment.postCommentButton),
+    ]);
   }
 }

@@ -63,6 +63,10 @@ export class Banner {
 
   public async clickDeleteArticleButton(): Promise<void> {
     logger.debug('Click on the Delete Article button on the Article Details page');
-    await this.page.click(articles.details.banner.deleteArticleButton);
+
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(articles.details.banner.deleteArticleButton),
+    ]);
   }
 }

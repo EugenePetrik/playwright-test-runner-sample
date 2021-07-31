@@ -63,7 +63,10 @@ export class Comment {
 
   public async deleteArticleComment(): Promise<void> {
     logger.debug('Delete article comment');
-    await this.page.click(articles.details.comment.deleteComment);
-    await this.page.waitForTimeout(1000);
+
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(articles.details.comment.deleteComment),
+    ]);
   }
 }

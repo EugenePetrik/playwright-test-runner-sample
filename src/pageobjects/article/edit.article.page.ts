@@ -75,6 +75,9 @@ export class EditArticlePage extends BasePage {
       await this.page.waitForTimeout(300);
     }
 
-    await this.page.click(articles.edit.publishArticleButton);
+    await Promise.all([
+      this.page.waitForNavigation(),
+      await this.page.click(articles.edit.publishArticleButton),
+    ]);
   }
 }

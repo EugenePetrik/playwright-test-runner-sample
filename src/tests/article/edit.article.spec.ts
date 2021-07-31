@@ -2,13 +2,14 @@ import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import dayjs from 'dayjs';
 import { env } from '../../configs';
-import { createUser, signInUser } from '../../utils/api';
-import { NewArticlePage, ArticleDetailsPage } from '../../pageobjects/article';
+import { createUser, createArticle, signInUser } from '../../utils/api';
+import { EditArticlePage, ArticleDetailsPage } from '../../pageobjects/article';
 import type { IArticle, IUser } from '../../utils/types';
 
-test.describe('Create a new article', () => {
-  let newArticlePage: NewArticlePage;
+test.describe('Edit an article', () => {
+  let editArticlePage: EditArticlePage;
   let articleDetailsPage: ArticleDetailsPage;
+  let articleSlug: string;
 
   const user: IUser = {
     email: `test${new Date().getTime() / 1000}@example.com`,
@@ -25,41 +26,58 @@ test.describe('Create a new article', () => {
 
   test.beforeAll(async () => {
     await createUser(user);
+    articleSlug = await createArticle(user, article);
   });
 
   test.beforeEach(async ({ page }) => {
-    newArticlePage = new NewArticlePage(page);
+    editArticlePage = new EditArticlePage(page);
     articleDetailsPage = new ArticleDetailsPage(page);
 
     await signInUser(page, user);
-    await newArticlePage.open();
+    await editArticlePage.open(articleSlug);
   });
 
   test('should open the page', async () => {
-    const pageUrl = await newArticlePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/editor/');
+    const pageUrl = await editArticlePage.getPageUrl();
+    expect(pageUrl).toEqual(env.APP_URL + `/editor/${articleSlug}`);
 
-    const pageTitle = await newArticlePage.getPageTitle();
+    const pageTitle = await editArticlePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
 
-    const articleTitlePlaceholder = await newArticlePage.getArticleTitlePlaceholder();
-    expect(articleTitlePlaceholder).toEqual('Article Title');
+    const articleTitle = await editArticlePage.getArticleTitle();
+    expect(articleTitle).toEqual(article.title);
 
-    const articleDescriptionPlaceholder = await newArticlePage.getArticleDescriptionPlaceholder();
-    expect(articleDescriptionPlaceholder).toEqual(`What's this article about?`);
+    const articleDescription = await editArticlePage.getArticleDescription();
+    expect(articleDescription).toEqual(article.description);
 
-    const articleBodyPlaceholder = await newArticlePage.getArticleBodyPlaceholder();
-    expect(articleBodyPlaceholder).toEqual('Write your article (in markdown)');
+    const articleBody = await editArticlePage.getArticleBody();
+    expect(articleBody).toEqual(article.body);
 
-    const articleTagsPlaceholder = await newArticlePage.getArticleTagsPlaceholder();
+    const articleTagsPlaceholder = await editArticlePage.getArticleTagsPlaceholder();
     expect(articleTagsPlaceholder).toEqual('Enter tags');
+
+    const articleTags = await editArticlePage.getArticleTags();
+    expect(articleTags).toEqual(article.tagList);
   });
 
-  test('should create a new article', async () => {
-    await newArticlePage.createNewArticleWith(article);
+  test('should edit an article', async () => {
+    const newArticle: IArticle = {
+      title: faker.lorem.words(),
+      description: faker.lorem.sentence(),
+      body: faker.lorem.paragraph(),
+      tagList: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()],
+    };
+
+    await editArticlePage.editArticleWith(newArticle);
+
+    const pageUrl = await articleDetailsPage.getPageUrl();
+    expect(pageUrl).toEqual(env.APP_URL + `/articles/${articleSlug}`);
+
+    const pageTitle = await articleDetailsPage.getPageTitle();
+    expect(pageTitle).toEqual('Conduit');
 
     const articleTitle = await articleDetailsPage.banner.getArticleTitle();
-    expect(articleTitle).toEqual(article.title);
+    expect(articleTitle).toEqual(newArticle.title);
 
     const isAuthorAvatarDisplayedInBanner =
       await articleDetailsPage.banner.isAuthorAvatarDisplayed();
@@ -80,10 +98,10 @@ test.describe('Create a new article', () => {
     expect(isDeleteArticleButtonDisplayedInBanner).toBeTruthy;
 
     const articleBody = await articleDetailsPage.content.getArticleBody();
-    expect(articleBody).toEqual(article.body);
+    expect(articleBody).toEqual(newArticle.body);
 
     const articleTags = await articleDetailsPage.content.getArticleTags();
-    expect(articleTags).toEqual(article.tagList);
+    expect(articleTags).toEqual([...article.tagList, ...newArticle.tagList]);
 
     const isAuthorAvatarDisplayedInContent =
       await articleDetailsPage.content.isAuthorAvatarDisplayed();
