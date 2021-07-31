@@ -5,7 +5,7 @@ import globalFeedEmptyResponse from '../../data/mock/global.feed.empty.json';
 import popularTagsResponse from '../../data/mock/tags.json';
 import popularTagsEmptyResponse from '../../data/mock/tags.empty.json';
 
-test.describe('Home page > Global feed snapshots', () => {
+test.describe('Home page > Global feed - snapshots', () => {
   let homePage: HomePage;
 
   test.describe('with articles', () => {

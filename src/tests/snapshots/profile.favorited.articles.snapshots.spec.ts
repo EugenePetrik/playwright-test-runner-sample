@@ -8,7 +8,7 @@ import profilesResponse from '../../data/mock/profiles.json';
 import favoritedArticlesResponse from '../../data/mock/favorited.articles.json';
 import favoritedArticlesEmptyResponse from '../../data/mock/favorited.articles.empty.json';
 
-test.describe('Profile page > Favorited articles snapshots', () => {
+test.describe('Profile page > Favorited articles - snapshots', () => {
   let profilePage: ProfilePage;
 
   const user: IUser = {
