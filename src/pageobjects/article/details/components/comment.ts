@@ -28,7 +28,7 @@ export class Comment {
   }
 
   public async getCommentAuthorName(): Promise<string> {
-    const authorName = await this.page.textContent(articles.details.comment.authorName);
+    const authorName = (await this.page.textContent(articles.details.comment.authorName)).trim();
     logger.debug(`comment author name is ${authorName} on the Article Details page`);
     return authorName;
   }
@@ -65,7 +65,7 @@ export class Comment {
     logger.debug('Delete article comment');
 
     await Promise.all([
-      this.page.waitForNavigation(),
+      this.page.waitForResponse('**/comments/**'),
       await this.page.click(articles.details.comment.deleteComment),
     ]);
   }

@@ -47,9 +47,9 @@ export class NewArticlePage extends BasePage {
   }
 
   public async createNewArticleWith(article: IArticle): Promise<void> {
-    const { title, description, body, tagList } = article;
-
     logger.debug(`Create a new article with - ${JSON.stringify(article)}`);
+
+    const { title, description, body, tagList } = article;
 
     await this.page.fill(articles.new.titleInput, title);
     await this.page.fill(articles.new.descriptionInput, description);

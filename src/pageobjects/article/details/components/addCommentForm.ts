@@ -46,14 +46,14 @@ export class AddCommentForm {
   }
 
   public async addCommentWith(comment: IComment): Promise<void> {
-    const { body } = comment;
-
     logger.debug(`Add comment with - ${JSON.stringify(comment)}`);
+
+    const { body } = comment;
 
     await this.page.fill(articles.details.addComment.writeCommentInput, body);
 
     await Promise.all([
-      this.page.waitForNavigation(),
+      this.page.waitForResponse('**/comments'),
       await this.page.click(articles.details.addComment.postCommentButton),
     ]);
   }

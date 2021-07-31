@@ -61,9 +61,9 @@ export class EditArticlePage extends BasePage {
   }
 
   public async editArticleWith(article: IArticle): Promise<void> {
-    const { title, description, body, tagList } = article;
-
     logger.debug(`Edit an article with - ${JSON.stringify(article)}`);
+
+    const { title, description, body, tagList } = article;
 
     await this.page.fill(articles.edit.titleInput, title);
     await this.page.fill(articles.edit.descriptionInput, description);
