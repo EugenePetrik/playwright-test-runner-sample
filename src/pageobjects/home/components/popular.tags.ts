@@ -38,9 +38,9 @@ export class PopularTags {
   }
 
   async mockPopularTagsResponse(data: any): Promise<void> {
-    logger.debug(`Mock API data for the Popular Tags request - /api/tags`);
+    logger.debug(`Mock API data for the Popular Tags request - /api/tags/`);
 
-    await this.page.route('**/api/tags', route => {
+    await this.page.route('**/api/tags/', route => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },
