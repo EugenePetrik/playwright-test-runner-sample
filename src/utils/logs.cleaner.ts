@@ -4,18 +4,30 @@ import { logger } from '../configs/logger';
 
 // Delete test-results directory
 const testResultsDirPath = path.join(__dirname, '..', '..', 'test-results');
-logger.info(`Removing the test-results directory -> ${testResultsDirPath}`);
+logger.debug(`Removing the test-results directory -> ${testResultsDirPath}`);
 fs.emptyDirSync(testResultsDirPath);
-logger.info('Test results directory removed');
+logger.debug('Test results directory removed');
 
 // Delete combined.log file
 const combinedLogFilePath = path.resolve(__dirname, '..', '..', 'logs', 'combined.log');
-logger.info(`Removing the combined.log file -> ${combinedLogFilePath}`);
+logger.debug(`Removing the combined.log file -> ${combinedLogFilePath}`);
 fs.removeSync(combinedLogFilePath);
-logger.info('File combined.log removed');
+logger.debug('File combined.log removed');
 
 // Create logs directory
 const logsDirPath = path.join(__dirname, '..', '..', 'logs');
-logger.info(`Creating the logs directory -> ${logsDirPath}`);
+logger.debug(`Creating the logs directory -> ${logsDirPath}`);
 fs.ensureDirSync(logsDirPath);
-logger.info('Logs directory created');
+logger.debug('Logs directory created');
+
+// Delete allure-report directory
+const allureReportDirPath = path.join(__dirname, '..', '..', 'allure-report');
+logger.debug(`Removing the allure-report directory -> ${allureReportDirPath}`);
+fs.emptyDirSync(allureReportDirPath);
+logger.debug('Allure report directory removed');
+
+// Delete allure-results directory
+const allureResultsDirPath = path.join(__dirname, '..', '..', 'allure-results');
+logger.debug(`Removing the allure-results directory -> ${allureResultsDirPath}`);
+fs.emptyDirSync(allureResultsDirPath);
+logger.debug('Allure results directory removed');
