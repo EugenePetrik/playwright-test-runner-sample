@@ -3,21 +3,7 @@ import { BaseController } from './base.controller';
 
 export class UserController extends BaseController {
   async register(user: IUser): Promise<UserResponse> {
-    const { email, password, username } = user;
-
-    return (
-      await this.request()
-        .url('users')
-        .method('POST')
-        .body({
-          user: {
-            email,
-            password,
-            username,
-          },
-        })
-        .send()
-    ).body;
+    return (await this.request().url('users').method('POST').body({ user }).send()).body;
   }
 
   async login(user: IUser): Promise<string> {

@@ -3,18 +3,12 @@ import { BaseController } from './base.controller';
 
 export class CommentController extends BaseController {
   async createComment(articleSlug: string, comment: IComment): Promise<CommentResponse> {
-    const { body } = comment;
-
     return (
       await this.request()
         .url(`articles/${articleSlug}/comments`)
         .method('POST')
         .headers({ authorization: `Token ${this.options.token}` })
-        .body({
-          comment: {
-            body,
-          },
-        })
+        .body({ comment })
         .send()
     ).body;
   }

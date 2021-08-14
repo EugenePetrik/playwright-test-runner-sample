@@ -3,40 +3,12 @@ import { BaseController } from './base.controller';
 
 export class ArticleController extends BaseController {
   async createArticle(article: IArticle): Promise<ArticleResponse> {
-    const { title, description, body, tagList } = article;
-
-    return (
-      await this.request()
-        .url('articles')
-        .method('POST')
-        .body({
-          article: {
-            body,
-            description,
-            tagList,
-            title,
-          },
-        })
-        .send()
-    ).body;
+    return (await this.request().url('articles').method('POST').body({ article }).send()).body;
   }
 
   async updateArticle(article: IArticle, articleSlug: string): Promise<ArticleResponse> {
-    const { title, description, body, tagList } = article;
-
     return (
-      await this.request()
-        .url(`articles/${articleSlug}`)
-        .method('PUT')
-        .body({
-          article: {
-            body,
-            description,
-            tagList,
-            title,
-          },
-        })
-        .send()
+      await this.request().url(`articles/${articleSlug}`).method('PUT').body({ article }).send()
     ).body;
   }
 

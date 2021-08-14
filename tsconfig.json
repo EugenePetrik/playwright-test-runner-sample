@@ -1,15 +1,26 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "esModuleInterop": true,
+    "target": "es2020",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
+    "allowJs": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "noEmit": true,
     "outDir": "./build",
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "target": "es2020",
-    "types": ["node"]
-  }
+    "baseUrl": ".",
+    "paths": {
+      "*": ["./*"]
+    },
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "inlineSourceMap": true,
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"],    
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+  },
+  "compileOnSave": true,
+  "include": ["src/**/*.ts", "playwright.config.ts"],
+  "exclude": ["node_modules"]
 }
