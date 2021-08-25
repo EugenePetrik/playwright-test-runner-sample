@@ -38,7 +38,7 @@ test.describe('Home page > Your feed - snapshots', () => {
 
     test('should open the page', async ({ page }) => {
       expect(await page.screenshot()).toMatchSnapshot('home-page-your-feed-with-articles.png', {
-        threshold: 0.1,
+        threshold: 0.2,
       });
     });
   });
@@ -53,9 +53,7 @@ test.describe('Home page > Your feed - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('home-page-your-feed-without-articles.png', {
-        threshold: 0.1,
-      });
+      expect(await page.screenshot()).toMatchSnapshot('home-page-your-feed-without-articles.png');
     });
   });
 });

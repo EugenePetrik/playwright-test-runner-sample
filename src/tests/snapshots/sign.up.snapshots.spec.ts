@@ -10,6 +10,6 @@ test.describe('Sign up page - snapshots', () => {
   });
 
   test('should open the page', async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot('sign-up-page.png', { threshold: 0.1 });
+    expect(await page.screenshot()).toMatchSnapshot('sign-up-page.png');
   });
 });

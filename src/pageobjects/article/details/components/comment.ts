@@ -10,7 +10,7 @@ export class Comment {
   }
 
   public async getCommentBody(): Promise<string> {
-    const getCommentBody = this.page.textContent(articles.details.comment.body);
+    const getCommentBody = await this.page.textContent(articles.details.comment.body);
     logger.debug(`Comment body is ${getCommentBody} on the New Article page`);
     return getCommentBody;
   }

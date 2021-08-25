@@ -45,18 +45,23 @@ export class EditArticlePage extends BasePage {
   }
 
   public async getArticleTagsPlaceholder(): Promise<string> {
-    const articleTagsPlaceholder = this.page.getAttribute(articles.edit.tagsInput, 'placeholder');
+    const articleTagsPlaceholder = await this.page.getAttribute(
+      articles.edit.tagsInput,
+      'placeholder',
+    );
     logger.debug(`Article tags placeholder is ${articleTagsPlaceholder} on the Edit Article page`);
     return articleTagsPlaceholder;
   }
 
   public async getArticleTags(): Promise<string[]> {
-    const articleTags = Promise.all(
-      (await this.page.$$(articles.edit.addedTags)).map(async item => {
+    const articleTags = await Promise.all(
+      (
+        await this.page.$$(articles.edit.addedTags)
+      ).map(async item => {
         return (await item.textContent()).trim();
       }),
     );
-    logger.debug(`Article tags are ${(await articleTags).join(', ')} on the Edit Article page`);
+    logger.debug(`Article tags are ${articleTags.join(', ')} on the Edit Article page`);
     return articleTags;
   }
 

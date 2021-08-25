@@ -22,12 +22,14 @@ export class PopularTags {
   }
 
   public async getPopularTagsTitles(): Promise<string[]> {
-    const tagsTitles = Promise.all(
-      (await this.page.$$(home.popularTags.tags)).map(async item => {
+    const tagsTitles = await Promise.all(
+      (
+        await this.page.$$(home.popularTags.tags)
+      ).map(async item => {
         return (await item.textContent()).trim();
       }),
     );
-    logger.debug(`Popular tags titles - ${(await tagsTitles).join(', ')} on the Home page`);
+    logger.debug(`Popular tags titles - ${tagsTitles.join(', ')} on the Home page`);
     return tagsTitles;
   }
 

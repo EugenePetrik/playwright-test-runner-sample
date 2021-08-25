@@ -3,15 +3,8 @@
     "target": "es2020",
     "module": "commonjs",
     "allowJs": true,
-    "strict": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "outDir": "./build",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["./*"]
-    },
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "inlineSourceMap": true,
@@ -20,7 +13,5 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
   },
-  "compileOnSave": true,
   "include": ["src/**/*.ts", "playwright.config.ts"],
-  "exclude": ["node_modules"]
 }

@@ -36,9 +36,7 @@ test.describe('Profile page > Favorited articles - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('profile-page-favorited-with-articles.png', {
-        threshold: 0.1,
-      });
+      expect(await page.screenshot()).toMatchSnapshot('profile-page-favorited-with-articles.png');
     });
   });
 
@@ -56,9 +54,6 @@ test.describe('Profile page > Favorited articles - snapshots', () => {
     test('should open the page', async ({ page }) => {
       expect(await page.screenshot()).toMatchSnapshot(
         'profile-page-favorited-without-articles.png',
-        {
-          threshold: 0.1,
-        },
       );
     });
   });

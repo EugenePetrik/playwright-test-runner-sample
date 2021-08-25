@@ -16,12 +16,14 @@ export class Content {
   }
 
   public async getArticleTags(): Promise<string[]> {
-    const articleTags = Promise.all(
-      (await this.page.$$(articles.details.content.tags)).map(async item => {
+    const articleTags = await Promise.all(
+      (
+        await this.page.$$(articles.details.content.tags)
+      ).map(async item => {
         return (await item.textContent()).trim();
       }),
     );
-    logger.debug(`Article tags are ${(await articleTags).join(', ')} on the Article Details page`);
+    logger.debug(`Article tags are ${articleTags.join(', ')} on the Article Details page`);
     return articleTags;
   }
 

@@ -18,12 +18,14 @@ export class ArticleBlock {
 
   public async getArticleTitles(): Promise<string[]> {
     await this.page.waitForSelector(articleBlock.preview);
-    const articlesTitles = Promise.all(
-      (await this.page.$$(articleBlock.title)).map(async item => {
+    const articlesTitles = await Promise.all(
+      (
+        await this.page.$$(articleBlock.title)
+      ).map(async item => {
         return (await item.textContent()).trim();
       }),
     );
-    logger.debug(`Articles titles - ${(await articlesTitles).join(', ')}`);
+    logger.debug(`Articles titles - ${articlesTitles.join(', ')}`);
     return articlesTitles;
   }
 

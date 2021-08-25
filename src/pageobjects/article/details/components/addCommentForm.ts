@@ -11,7 +11,7 @@ export class AddCommentForm {
   }
 
   public async getCommentPlaceholder(): Promise<string> {
-    const getCommentPlaceholder = this.page.getAttribute(
+    const getCommentPlaceholder = await this.page.getAttribute(
       articles.details.addComment.writeCommentInput,
       'placeholder',
     );
@@ -48,9 +48,7 @@ export class AddCommentForm {
   public async addCommentWith(comment: IComment): Promise<void> {
     logger.debug(`Add comment with - ${JSON.stringify(comment)}`);
 
-    const { body } = comment;
-
-    await this.page.fill(articles.details.addComment.writeCommentInput, body);
+    await this.page.fill(articles.details.addComment.writeCommentInput, comment.body);
 
     await Promise.all([
       this.page.waitForResponse('**/comments'),

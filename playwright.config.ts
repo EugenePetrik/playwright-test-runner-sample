@@ -84,6 +84,10 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
+
+  expect: {
+    toMatchSnapshot: { threshold: 0.3 },
+  },
 };
 
 export default config;
