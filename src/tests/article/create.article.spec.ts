@@ -37,7 +37,7 @@ test.describe('Create a new article', () => {
 
   test('should open the page', async () => {
     const pageUrl = await newArticlePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/editor/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/editor/`);
 
     const pageTitle = await newArticlePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -69,7 +69,7 @@ test.describe('Create a new article', () => {
     expect(authorNameInBanner).toEqual(user.username);
 
     const articleDateInBanner = await articleDetailsPage.banner.getArticleDate();
-    expect(articleDateInBanner).toEqual(dayjs().format('MMMM DD, YYYY'));
+    expect(articleDateInBanner).toEqual(dayjs().format('MMMM D, YYYY'));
 
     const isEditArticleButtonDisplayedInBanner =
       await articleDetailsPage.banner.isEditArticleButtonDisplayed();
@@ -93,7 +93,7 @@ test.describe('Create a new article', () => {
     expect(authorNameInContent).toEqual(user.username);
 
     const articleDateInContent = await articleDetailsPage.content.getArticleDate();
-    expect(articleDateInContent).toEqual(dayjs().format('MMMM DD, YYYY'));
+    expect(articleDateInContent).toEqual(dayjs().format('MMMM D, YYYY'));
 
     const isEditArticleButtonDisplayedInContent =
       await articleDetailsPage.content.isEditArticleButtonDisplayed();

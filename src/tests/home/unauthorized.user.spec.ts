@@ -33,7 +33,7 @@ test.describe('Home page for unauthorized user', () => {
 
   test('should have navigation bar', async () => {
     const pageUrl = await homePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/`);
 
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -79,7 +79,7 @@ test.describe('Home page for unauthorized user', () => {
     expect(popularTagsLength).toBeGreaterThan(0);
 
     const popularTagsTitles = await homePage.popularTags.getPopularTagsTitles();
-    article.tagList.forEach(tag => {
+    article.tagList.forEach((tag) => {
       expect(popularTagsTitles).toContain(tag);
     });
   });

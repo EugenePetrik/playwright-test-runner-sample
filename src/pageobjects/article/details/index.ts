@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../../configs';
 import { BasePage } from '../../base.page';
@@ -27,7 +30,7 @@ export class ArticleDetailsPage extends BasePage {
   async mockDetailsArticleResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Details Article request - /api/articles/`);
 
-    await this.page.route('**/api/articles/**', route => {
+    await this.page.route('**/api/articles/**', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

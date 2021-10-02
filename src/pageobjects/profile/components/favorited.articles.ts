@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../../configs';
 import { ArticleBlock } from '../../components';
@@ -24,7 +27,7 @@ export class FavoritedArticles {
   async mockFavoritedArticlesResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Favorited Articles request - /api/articles?favorited=`);
 
-    await this.page.route('**/articles?offset=0&limit=5&favorited=**', route => {
+    await this.page.route('**/articles?offset=0&limit=5&favorited=**', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

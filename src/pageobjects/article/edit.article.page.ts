@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import type { IArticle } from '../../utils/types';
-import { logger } from '../../configs';
+import { logger, timeouts } from '../../configs';
 import { BasePage } from '../base.page';
 import { articles } from '../../elements/articles';
 
@@ -18,49 +21,45 @@ export class EditArticlePage extends BasePage {
   }
 
   public async getArticleTitle(): Promise<string> {
-    const articleTitle = await this.page.$eval(
-      articles.edit.titleInput,
-      (element: HTMLInputElement) => element.value,
-    );
+    const articleTitle = await this.page.$eval(articles.edit.titleInput,
+      (element: HTMLInputElement) => {
+        return element.value; 
+      });
     logger.debug(`Article title is ${articleTitle} on the Edit Article page`);
     return articleTitle;
   }
 
   public async getArticleDescription(): Promise<string> {
-    const articleDescription = await this.page.$eval(
-      articles.edit.descriptionInput,
-      (element: HTMLInputElement) => element.value,
-    );
+    const articleDescription = await this.page.$eval(articles.edit.descriptionInput,
+      (element: HTMLInputElement) => {
+        return element.value; 
+      });
     logger.debug(`Article description is ${articleDescription} on the Edit Article page`);
     return articleDescription;
   }
 
   public async getArticleBody(): Promise<string> {
-    const articleBody = await this.page.$eval(
-      articles.edit.bodyInput,
-      (element: HTMLInputElement) => element.value,
-    );
+    const articleBody = await this.page.$eval(articles.edit.bodyInput,
+      (element: HTMLInputElement) => {
+        return element.value; 
+      });
     logger.debug(`Article body is ${articleBody} on the Edit Article page`);
     return articleBody;
   }
 
   public async getArticleTagsPlaceholder(): Promise<string> {
-    const articleTagsPlaceholder = await this.page.getAttribute(
-      articles.edit.tagsInput,
-      'placeholder',
-    );
+    const articleTagsPlaceholder = await this.page.getAttribute(articles.edit.tagsInput,
+      'placeholder');
     logger.debug(`Article tags placeholder is ${articleTagsPlaceholder} on the Edit Article page`);
     return articleTagsPlaceholder;
   }
 
   public async getArticleTags(): Promise<string[]> {
-    const articleTags = await Promise.all(
-      (
-        await this.page.$$(articles.edit.addedTags)
-      ).map(async item => {
-        return (await item.textContent()).trim();
-      }),
-    );
+    const articleTags = await Promise.all((
+      await this.page.$$(articles.edit.addedTags)
+    ).map(async (item) => {
+      return (await item.textContent()).trim();
+    }));
     logger.debug(`Article tags are ${articleTags.join(', ')} on the Edit Article page`);
     return articleTags;
   }
@@ -77,7 +76,7 @@ export class EditArticlePage extends BasePage {
     for await (const tag of tagList) {
       await this.page.fill(articles.edit.tagsInput, tag);
       await this.page.keyboard.press('Enter');
-      await this.page.waitForTimeout(300);
+      await this.page.waitForTimeout(timeouts.element);
     }
 
     await Promise.all([
@@ -89,7 +88,7 @@ export class EditArticlePage extends BasePage {
   async mockEditArticleResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Edit Article request - /api/articles/`);
 
-    await this.page.route('**/api/articles/**', route => {
+    await this.page.route('**/api/articles/**', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

@@ -29,7 +29,7 @@ test.describe('Sign in', () => {
 
   test('should open the page', async () => {
     const pageUrl = await signInPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/login');
+    expect(pageUrl).toEqual(`${env.APP_URL}/login`);
 
     const pageTitle = await signInPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -48,7 +48,7 @@ test.describe('Sign in', () => {
     await signInPage.signInAs(user);
 
     const pageUrl = await homePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/`);
 
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');

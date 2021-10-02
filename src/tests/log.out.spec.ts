@@ -35,7 +35,7 @@ test.describe('Log out', () => {
     await settingsPage.clickOnLogOutButton();
 
     const pageUrl = await homePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/`);
 
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');

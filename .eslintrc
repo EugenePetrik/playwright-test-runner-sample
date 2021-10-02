@@ -5,6 +5,14 @@
     "es6": true,
     "node": true
   },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -21,30 +29,130 @@
     "plugin:playwright/playwright-test"
   ],
   "rules": {
-    "no-unused-vars": "warn",
-    "no-console": "error",
-    "no-mixed-spaces-and-tabs": "warn",
+    "indent": ["error", 2],
     "linebreak-style": ["off", "unix"],
+    "quotes": ["warn", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
     "semi": ["error", "always"],
-    "quotes": [
+    "arrow-body-style": ["warn", "always"],
+    "no-useless-return": ["error"],
+    "arrow-parens": ["error", "always"],
+    "no-func-assign": ["error"],
+    "no-useless-concat": ["error"],
+    "nonblock-statement-body-position": ["error"],
+    "no-array-constructor": ["error"],
+    "array-callback-return": ["error"],
+    "prefer-destructuring": ["warn"],
+    "no-new-object": ["error"],
+    "prefer-template": ["error"],
+    "func-style": [
       "error",
-      "single",
+      "declaration",
       {
-        "allowTemplateLiterals": true
+        "allowArrowFunctions": true
       }
     ],
-    "max-len": [
+    "object-shorthand": ["error", "always"],
+    "quote-props": ["error", "as-needed"],
+    "no-loop-func": ["error"],
+    "prefer-rest-params": ["error"],
+    "no-new-func": ["error"],
+    "prefer-spread": ["error"],
+    "prefer-const": [
       "error",
       {
-        "code": 100
+        "destructuring": "any",
+        "ignoreReadBeforeAssign": false
       }
     ],
+    "template-curly-spacing": ["error", "never"],
+    "space-before-blocks": [
+      "error",
+      {
+        "functions": "always",
+        "keywords": "always",
+        "classes": "always"
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "no-param-reassign": [
+      "warn",
+      {
+        "props": true
+      }
+    ],
+    "function-paren-newline": ["error", "never"],
+    "eol-last": ["error"],
+    "no-unused-vars": ["warn", { "vars": "local" }],
+    "no-console": ["error"],
+    "no-mixed-spaces-and-tabs": ["warn"],
+    "max-len": ["error", { "code": 120, "ignoreComments": true }],
     "object-curly-spacing": [
-      "error",
+      "off",
       "always",
       {
         "objectsInObjects": false,
         "arraysInObjects": false
+      }
+    ],
+    "prettier/prettier": [
+      "off",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "eslint-disable-next-line": ["off", "always"],
+    "no-extra-parens": ["off"],
+    "curly": ["error"],
+    "default-case": ["warn"],
+    "eqeqeq": ["error", "always"],
+    "guard-for-in": ["warn"],
+    "no-caller": ["error"],
+    "no-empty-function": ["error"],
+    "no-eval": ["error"],
+    "no-extra-bind": ["error"],
+    "no-floating-decimal": ["error"],
+    "no-lone-blocks": ["error"],
+    "no-multi-spaces": ["error"],
+    "no-new": ["warn"],
+    "no-return-assign": ["error"],
+    "no-self-compare": ["error"],
+    "no-useless-call": ["error"],
+    "no-undef-init": ["error"],
+    "block-spacing": ["error"],
+    "brace-style": ["error"],
+    "comma-dangle": [
+      "off",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "func-call-spacing": ["error", "never"],
+    "new-cap": ["error", { "newIsCap": true }],
+    "new-parens": ["error"],
+    "no-nested-ternary": ["error"],
+    "no-unneeded-ternary": ["error"],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "no-useless-computed-key": ["error"],
+    "no-useless-constructor": ["error"],
+    "no-prototype-builtins": ["off"],
+    "no-var": ["warn"],
+    "no-magic-numbers": ["warn", { "ignore": [0, 1] }],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 1
       }
     ],
     "playwright/missing-playwright-await": ["error", { "customMatchers": ["toBeCustomThing"] }]

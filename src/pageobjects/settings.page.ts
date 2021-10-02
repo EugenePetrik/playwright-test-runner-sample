@@ -28,38 +28,34 @@ export class SettingsPage extends BasePage {
   }
 
   public async getUsername(): Promise<string> {
-    const username = await this.page.$eval(
-      settings.usernameInput,
-      (element: HTMLInputElement) => element.value,
-    );
+    const username = await this.page.$eval(settings.usernameInput,
+      (element: HTMLInputElement) => {
+        return element.value; 
+      });
     logger.debug(`Username equals ${username} on the Settings page`);
     return username;
   }
 
   public async getEmail(): Promise<string> {
-    const email = await this.page.$eval(
-      settings.emailInput,
-      (element: HTMLInputElement) => element.value,
-    );
+    const email = await this.page.$eval(settings.emailInput,
+      (element: HTMLInputElement) => {
+        return element.value; 
+      });
     logger.debug(`Email equals ${email} on the Settings page`);
     return email;
   }
 
   public async isUpdateSettingButtonDisplayed(): Promise<boolean> {
     const isButtonDisplayed = await this.page.isVisible(settings.updateSettingButton);
-    logger.debug(
-      `Update Settings button is ${
-        isButtonDisplayed ? 'visible' : 'not visible'
-      } on the Settings page`,
-    );
+    logger.debug(`Update Settings button is ${
+      isButtonDisplayed ? 'visible' : 'not visible'
+    } on the Settings page`);
     return isButtonDisplayed;
   }
 
   public async isLogOutButtonDisplayed(): Promise<boolean> {
     const isButtonDisplayed = await this.page.isVisible(settings.logOutButton);
-    logger.debug(
-      `Log Out button is ${isButtonDisplayed ? 'visible' : 'not visible'} on the Settings page`,
-    );
+    logger.debug(`Log Out button is ${isButtonDisplayed ? 'visible' : 'not visible'} on the Settings page`);
     return isButtonDisplayed;
   }
 

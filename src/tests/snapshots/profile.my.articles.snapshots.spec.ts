@@ -35,7 +35,7 @@ test.describe('Profile page > My articles - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('profile-page-my-articles-with-articles.png');
+      await expect(await page.screenshot()).toMatchSnapshot('profile-page-my-articles-with-articles.png');
     });
   });
 
@@ -48,9 +48,7 @@ test.describe('Profile page > My articles - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot(
-        'profile-page-my-articles-without-articles.png',
-      );
+      await expect(await page.screenshot()).toMatchSnapshot('profile-page-my-articles-without-articles.png',);
     });
   });
 });

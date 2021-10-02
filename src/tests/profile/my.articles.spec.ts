@@ -51,7 +51,7 @@ test.describe('My articles', () => {
     });
 
     test('should open the page', async () => {
-      const username = user.username;
+      const {username} = user;
 
       const isUserImageDisplayed = await profilePage.isUserImageVisible();
       expect(isUserImageDisplayed).toBeTruthy;
@@ -63,7 +63,7 @@ test.describe('My articles', () => {
       expect(isEditProfileButtonVisible).toBeTruthy;
 
       const pageUrl = await profilePage.getPageUrl();
-      expect(pageUrl).toEqual(env.APP_URL + `/@${username}`);
+      expect(pageUrl).toEqual(`${env.APP_URL}/@${username}`);
 
       const pageTitle = await profilePage.getPageTitle();
       expect(pageTitle).toEqual('Conduit');

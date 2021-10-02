@@ -16,36 +16,26 @@ export class Banner {
   }
 
   public async isEditArticleButtonDisplayed(): Promise<boolean> {
-    const isEditArticleButtonDisplayed = await this.page.isVisible(
-      articles.details.banner.editArticleButton,
-    );
-    logger.debug(
-      `Edit Article button is ${
-        isEditArticleButtonDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isEditArticleButtonDisplayed = await this.page.isVisible(articles.details.banner.editArticleButton);
+    logger.debug(`Edit Article button is ${
+      isEditArticleButtonDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isEditArticleButtonDisplayed;
   }
 
   public async isDeleteArticleButtonDisplayed(): Promise<boolean> {
-    const isDeleteArticleButtonDisplayed = await this.page.isVisible(
-      articles.details.banner.editArticleButton,
-    );
-    logger.debug(
-      `Delete Article button is ${
-        isDeleteArticleButtonDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isDeleteArticleButtonDisplayed = await this.page.isVisible(articles.details.banner.editArticleButton);
+    logger.debug(`Delete Article button is ${
+      isDeleteArticleButtonDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isDeleteArticleButtonDisplayed;
   }
 
   public async isAuthorAvatarDisplayed(): Promise<boolean> {
     const isAuthorAvatarDisplayed = await this.page.isVisible(articles.details.banner.authorAvatar);
-    logger.debug(
-      `Author avatar is ${
-        isAuthorAvatarDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    logger.debug(`Author avatar is ${
+      isAuthorAvatarDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isAuthorAvatarDisplayed;
   }
 

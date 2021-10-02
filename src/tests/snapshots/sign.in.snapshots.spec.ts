@@ -10,6 +10,6 @@ test.describe('Sign in page - snapshots', () => {
   });
 
   test('should open the page', async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot('sign-in-page.png');
+    await expect(await page.screenshot()).toMatchSnapshot('sign-in-page.png');
   });
 });

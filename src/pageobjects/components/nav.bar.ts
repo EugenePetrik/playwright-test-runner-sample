@@ -28,8 +28,10 @@ export class NavBarComponent {
   }
 
   public async getNavLinksText(): Promise<Array<string>> {
-    const navLinksText = await this.page.$$eval(navBar.links, links => {
-      return links.map(link => link.textContent.trim());
+    const navLinksText = await this.page.$$eval(navBar.links, (links) => {
+      return links.map((link) => {
+        return link.textContent.trim(); 
+      });
     });
     logger.debug(`Navigation contains the following links - ${navLinksText.join(', ')}`);
     return navLinksText;

@@ -39,7 +39,7 @@ test.describe('Delete an article', () => {
 
   test('should open the page', async () => {
     const pageUrl = await articleDetailsPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + `/articles/${articleSlug}`);
+    expect(pageUrl).toEqual(`${env.APP_URL}/articles/${articleSlug}`);
 
     const pageTitle = await articleDetailsPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -58,7 +58,7 @@ test.describe('Delete an article', () => {
     await articleDetailsPage.banner.clickDeleteArticleButton();
 
     const pageUrl = await homePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/`);
 
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');

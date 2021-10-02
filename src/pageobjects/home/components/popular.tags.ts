@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../../configs';
 import { home } from '../../../elements/home';
@@ -22,13 +25,11 @@ export class PopularTags {
   }
 
   public async getPopularTagsTitles(): Promise<string[]> {
-    const tagsTitles = await Promise.all(
-      (
-        await this.page.$$(home.popularTags.tags)
-      ).map(async item => {
-        return (await item.textContent()).trim();
-      }),
-    );
+    const tagsTitles = await Promise.all((
+      await this.page.$$(home.popularTags.tags)
+    ).map(async (item) => {
+      return (await item.textContent()).trim();
+    }));
     logger.debug(`Popular tags titles - ${tagsTitles.join(', ')} on the Home page`);
     return tagsTitles;
   }
@@ -42,7 +43,7 @@ export class PopularTags {
   async mockPopularTagsResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Popular Tags request - /api/tags/`);
 
-    await this.page.route('**/api/tags/', route => {
+    await this.page.route('**/api/tags/', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

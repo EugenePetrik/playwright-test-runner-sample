@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../../configs';
 import { home } from '../../../elements/home';
@@ -21,7 +24,7 @@ export class GlobalFeed {
   async mockGlobalFeedResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Global Feed request - /api/articles?offset=0&limit=10`);
 
-    await this.page.route('**/api/articles?offset=0&limit=10', route => {
+    await this.page.route('**/api/articles?offset=0&limit=10', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

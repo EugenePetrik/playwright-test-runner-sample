@@ -41,7 +41,7 @@ test.describe('Add a comment to the article', () => {
 
   test('should open the page', async () => {
     const pageUrl = await articleDetailsPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + `/articles/${articleSlug}`);
+    expect(pageUrl).toEqual(`${env.APP_URL}/articles/${articleSlug}`);
 
     const pageTitle = await articleDetailsPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -72,7 +72,7 @@ test.describe('Add a comment to the article', () => {
     expect(commentAuthorName).toEqual(user.username);
 
     const commentDatePosted = await articleDetailsPage.comment.getCommentDatePosted();
-    expect(commentDatePosted).toEqual(dayjs().format('MMMM DD, YYYY'));
+    expect(commentDatePosted).toEqual(dayjs().format('MMMM D, YYYY'));
 
     const isDeleteCommentButtonDisplayed =
       await articleDetailsPage.comment.isDeleteCommentButtonDisplayed();

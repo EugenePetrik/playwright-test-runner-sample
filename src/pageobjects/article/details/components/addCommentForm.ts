@@ -11,37 +11,25 @@ export class AddCommentForm {
   }
 
   public async getCommentPlaceholder(): Promise<string> {
-    const getCommentPlaceholder = await this.page.getAttribute(
-      articles.details.addComment.writeCommentInput,
-      'placeholder',
-    );
-    logger.debug(
-      `Article description placeholder is ${getCommentPlaceholder} on the New Article page`,
-    );
+    const getCommentPlaceholder = await this.page.getAttribute(articles.details.addComment.writeCommentInput,
+      'placeholder');
+    logger.debug(`Article description placeholder is ${getCommentPlaceholder} on the New Article page`);
     return getCommentPlaceholder;
   }
 
   public async isCommentAuthorAvatarDisplayed(): Promise<boolean> {
-    const isCommentAuthorAvatarDisplayed = await this.page.isVisible(
-      articles.details.addComment.authorAvatar,
-    );
-    logger.debug(
-      `Comment author avatar is ${
-        isCommentAuthorAvatarDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isCommentAuthorAvatarDisplayed = await this.page.isVisible(articles.details.addComment.authorAvatar);
+    logger.debug(`Comment author avatar is ${
+      isCommentAuthorAvatarDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isCommentAuthorAvatarDisplayed;
   }
 
   public async isPostCommentButtonDisplayed(): Promise<boolean> {
-    const isPostCommentButtonDisplayed = await this.page.isVisible(
-      articles.details.addComment.postCommentButton,
-    );
-    logger.debug(
-      `Post Comment button is ${
-        isPostCommentButtonDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isPostCommentButtonDisplayed = await this.page.isVisible(articles.details.addComment.postCommentButton);
+    logger.debug(`Post Comment button is ${
+      isPostCommentButtonDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isPostCommentButtonDisplayed;
   }
 

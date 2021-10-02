@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../../../configs';
 import { articles } from '../../../../elements/articles';
@@ -16,14 +19,10 @@ export class Comment {
   }
 
   public async isCommentAuthorAvatarDisplayed(): Promise<boolean> {
-    const isAuthorAvatarDisplayed = await this.page.isVisible(
-      articles.details.comment.authorAvatar,
-    );
-    logger.debug(
-      `Comment author avatar is ${
-        isAuthorAvatarDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isAuthorAvatarDisplayed = await this.page.isVisible(articles.details.comment.authorAvatar);
+    logger.debug(`Comment author avatar is ${
+      isAuthorAvatarDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isAuthorAvatarDisplayed;
   }
 
@@ -40,24 +39,18 @@ export class Comment {
   }
 
   public async isDeleteCommentButtonDisplayed(): Promise<boolean> {
-    const isDeleteCommentButtonDisplayed = await this.page.isVisible(
-      articles.details.comment.deleteComment,
-    );
-    logger.debug(
-      `Delete Comment button is ${
-        isDeleteCommentButtonDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    const isDeleteCommentButtonDisplayed = await this.page.isVisible(articles.details.comment.deleteComment);
+    logger.debug(`Delete Comment button is ${
+      isDeleteCommentButtonDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isDeleteCommentButtonDisplayed;
   }
 
   public async isArticleCommentDisplayed(): Promise<boolean> {
     const isArticleCommentDisplayed = await this.page.isVisible(articles.details.comment.card);
-    logger.debug(
-      `Article comment is ${
-        isArticleCommentDisplayed ? 'visible' : 'not visible'
-      } on the Article Details page`,
-    );
+    logger.debug(`Article comment is ${
+      isArticleCommentDisplayed ? 'visible' : 'not visible'
+    } on the Article Details page`);
     return isArticleCommentDisplayed;
   }
 
@@ -73,7 +66,7 @@ export class Comment {
   async mockCommentsResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Comment request - /api/articles/**/comments`);
 
-    await this.page.route('**/api/articles/**/comments', route => {
+    await this.page.route('**/api/articles/**/comments', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

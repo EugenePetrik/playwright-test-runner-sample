@@ -24,7 +24,7 @@ test.describe('Sign up', () => {
 
   test('should open the page', async () => {
     const pageUrl = await signUpPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/register');
+    expect(pageUrl).toEqual(`${env.APP_URL}/register`);
 
     const pageTitle = await signUpPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');
@@ -43,7 +43,7 @@ test.describe('Sign up', () => {
     await signUpPage.signUpAs(user);
 
     const pageUrl = await homePage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/');
+    expect(pageUrl).toEqual(`${env.APP_URL}/`);
 
     const pageTitle = await homePage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');

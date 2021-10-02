@@ -23,6 +23,6 @@ test.describe('Settings page - snapshots', () => {
   });
 
   test('should open the page', async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot('settings-page.png');
+    await expect(await page.screenshot()).toMatchSnapshot('settings-page.png');
   });
 });

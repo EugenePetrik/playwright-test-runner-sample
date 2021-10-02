@@ -17,7 +17,7 @@ test.describe('Home page > Global feed - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('home-page-global-feed-with-articles.png', {
+      await expect(await page.screenshot()).toMatchSnapshot('home-page-global-feed-with-articles.png', {
         threshold: 0.2,
       });
     });
@@ -32,7 +32,7 @@ test.describe('Home page > Global feed - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('home-page-global-feed-without-articles.png');
+      await expect(await page.screenshot()).toMatchSnapshot('home-page-global-feed-without-articles.png');
     });
   });
 });

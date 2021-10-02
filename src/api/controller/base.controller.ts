@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable no-unused-vars */
-
 import type { CookieJar } from 'tough-cookie';
 import { BaseHttpRequest } from '../request';
 
@@ -13,9 +10,15 @@ export type ControllerOptions = {
 };
 
 export class BaseController {
-  constructor(protected readonly options: ControllerOptions) {}
+  // constructor(protected readonly options: ControllerOptions) {}
 
-  protected request() {
+  options: ControllerOptions;
+
+  constructor(options: ControllerOptions) {
+    this.options = options;
+  }
+
+  protected request(): BaseHttpRequest {
     const preparedUrl = new URL(this.options.prefixPath, this.options.prefixUrl);
     return new this.options.RequestBuilder()
       .prefixUrl(preparedUrl)

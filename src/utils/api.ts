@@ -25,7 +25,7 @@ export async function signInUser(page: Page, user: IUser): Promise<void> {
   });
 
   logger.debug('Add JWT Token to Local Storage');
-  await page.evaluate(async token => {
+  await page.evaluate(async (token) => {
     await window.localStorage.setItem('id_token', token);
   }, jwtToken);
 
@@ -55,7 +55,7 @@ export async function createUserAndSignIn(page: Page, user: IUser): Promise<void
   });
 
   logger.debug('Add JWT Token to Local Storage');
-  await page.evaluate(async token => {
+  await page.evaluate(async (token) => {
     await window.localStorage.setItem('id_token', token);
   }, jwtToken);
 
@@ -105,11 +105,7 @@ export async function createFavoriteArticle(user: IUser, article: IArticle): Pro
   return articleSlug;
 }
 
-export async function createArticleWithComment(
-  user: IUser,
-  article: IArticle,
-  comment: IComment,
-): Promise<string> {
+export async function createArticleWithComment(user: IUser, article: IArticle, comment: IComment,): Promise<string> {
   logger.debug(`Sign in user via API with - ${JSON.stringify(user)}`);
   const client = await ApiClient.loginAs(user);
 

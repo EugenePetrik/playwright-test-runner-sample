@@ -3,7 +3,7 @@ import { devices } from 'playwright';
 import * as dotenv from 'dotenv';
 import { env, timeouts } from './src/configs';
 
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config({ path: `${__dirname}/.env` });
 
 const config: PlaywrightTestConfig = {
   testDir: 'src/tests',

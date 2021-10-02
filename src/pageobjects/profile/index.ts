@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Page } from '@playwright/test';
 import { logger } from '../../configs';
 import { BasePage } from '../base.page';
@@ -23,9 +26,7 @@ export class ProfilePage extends BasePage {
 
   public async isUserImageVisible(): Promise<boolean> {
     const isUserImageVisible = await this.page.isDisabled(profile.userImage);
-    logger.debug(
-      `User image is ${isUserImageVisible ? 'visible' : 'not visible'} on the Profile page`,
-    );
+    logger.debug(`User image is ${isUserImageVisible ? 'visible' : 'not visible'} on the Profile page`,);
     return isUserImageVisible;
   }
 
@@ -36,21 +37,17 @@ export class ProfilePage extends BasePage {
   }
 
   public async isEditProfileButtonVisible(): Promise<boolean> {
-    const isEditProfileButtonVisible = await this.page.isDisabled(
-      profile.editProfileSettingsButton,
-    );
-    logger.debug(
-      `Edit Profile button is ${
-        isEditProfileButtonVisible ? 'visible' : 'not visible'
-      } on the Profile page`,
-    );
+    const isEditProfileButtonVisible = await this.page.isDisabled(profile.editProfileSettingsButton,);
+    logger.debug(`Edit Profile button is ${
+      isEditProfileButtonVisible ? 'visible' : 'not visible'
+    } on the Profile page`,);
     return isEditProfileButtonVisible;
   }
 
   async mockProfilesResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the User request - /api/profiles/`);
 
-    await this.page.route('**/api/profiles/**', route => {
+    await this.page.route('**/api/profiles/**', (route) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

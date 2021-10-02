@@ -54,7 +54,7 @@ test.describe('Favorited articles', () => {
     });
 
     test('should open the page', async () => {
-      const username = user.username;
+      const {username} = user;
 
       const isUserImageDisplayed = await profilePage.isUserImageVisible();
       expect(isUserImageDisplayed).toBeTruthy;
@@ -66,7 +66,7 @@ test.describe('Favorited articles', () => {
       expect(isEditProfileButtonVisible).toBeTruthy;
 
       const pageUrl = await profilePage.getPageUrl();
-      expect(pageUrl).toEqual(env.APP_URL + `/@${username}/favorites`);
+      expect(pageUrl).toEqual(`${env.APP_URL}/@${username}/favorites`);
 
       const pageTitle = await profilePage.getPageTitle();
       expect(pageTitle).toEqual('Conduit');

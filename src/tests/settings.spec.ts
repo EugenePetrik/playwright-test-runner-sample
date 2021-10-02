@@ -27,7 +27,7 @@ test.describe('Settings', () => {
 
   test('should open the page', async () => {
     const pageUrl = await settingsPage.getPageUrl();
-    expect(pageUrl).toEqual(env.APP_URL + '/settings');
+    expect(pageUrl).toEqual(`${env.APP_URL}/settings`);
 
     const pageTitle = await settingsPage.getPageTitle();
     expect(pageTitle).toEqual('Conduit');

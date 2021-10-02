@@ -38,6 +38,6 @@ test.describe('Edit Article page - snapshots', () => {
   });
 
   test('should open the page', async ({ page }) => {
-    expect(await page.screenshot()).toMatchSnapshot('edit-article-page.png');
+    await expect(await page.screenshot()).toMatchSnapshot('edit-article-page.png');
   });
 });

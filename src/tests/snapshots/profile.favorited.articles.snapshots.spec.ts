@@ -36,7 +36,7 @@ test.describe('Profile page > Favorited articles - snapshots', () => {
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot('profile-page-favorited-with-articles.png');
+      await expect(await page.screenshot()).toMatchSnapshot('profile-page-favorited-with-articles.png');
     });
   });
 
@@ -44,17 +44,13 @@ test.describe('Profile page > Favorited articles - snapshots', () => {
     test.beforeEach(async () => {
       await profilePage.mockUserResponse(userResponse);
       await profilePage.mockProfilesResponse(profilesResponse);
-      await profilePage.favoritedArticles.mockFavoritedArticlesResponse(
-        favoritedArticlesEmptyResponse,
-      );
+      await profilePage.favoritedArticles.mockFavoritedArticlesResponse(favoritedArticlesEmptyResponse,);
       await profilePage.open(user.username);
       await profilePage.favoritedArticles.clickFavoritedArticlesTab();
     });
 
     test('should open the page', async ({ page }) => {
-      expect(await page.screenshot()).toMatchSnapshot(
-        'profile-page-favorited-without-articles.png',
-      );
+      await expect(await page.screenshot()).toMatchSnapshot('profile-page-favorited-without-articles.png',);
     });
   });
 });

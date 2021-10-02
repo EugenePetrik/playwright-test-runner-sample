@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-
 import type { Options, Method, Response, GotRequestFunction } from 'got';
 import got from 'got';
 import { CookieJar } from 'tough-cookie';
@@ -56,17 +52,18 @@ export abstract class BaseHttpRequest {
   public abstract body(body: any): this;
 
   public async send<T = any>(): Promise<Response<T>> {
-    const stack = new Error().stack;
+    const { stack } = new Error();
+    
     try {
       return await got<T>(this.options as any);
     } catch (err) {
       err.stack = stack;
       if (err instanceof got.HTTPError) {
         err.message = `
-            [${err?.options?.method}]: ${err?.options?.url} => ${err?.response?.statusCode} 
-            ${err.message} 
-            ${err?.response?.rawBody?.toString()}
-            `;
+                        [${err?.options?.method}]: ${err?.options?.url} => ${err?.response?.statusCode} 
+                        ${err.message} 
+                        ${err?.response?.rawBody?.toString()}
+                      `;
       }
       throw err;
     }
