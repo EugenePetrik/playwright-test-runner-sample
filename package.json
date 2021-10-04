@@ -12,7 +12,8 @@
     "test:console": "set PWDEBUG=console && npm run test --reporter=line",
     "test:logs": "set DEBUG=pw:api && npm run test --reporter=line",
     "test:mobile": "npm run test --project=\"iPhone 11\" --reporter=dot,line",
-    "remove-logs": "ts-node ./src/utils/logs.cleaner.ts"
+    "remove-logs": "ts-node ./src/utils/logs.cleaner.ts",
+    "start:project": "npm init playwright fancy-new-project"
   },
   "keywords": [
     "Playwright",
