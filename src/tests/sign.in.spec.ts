@@ -3,7 +3,7 @@ import faker from 'faker';
 import { env } from '../configs';
 import { SignInPage } from '../pageobjects/sign.in.page';
 import { HomePage } from '../pageobjects/home';
-import { createUser } from '../utils/api';
+import { ApiHelper } from '../utils/api.helper';
 import type { IUser } from '../utils/types';
 
 test.describe('Sign in', () => {
@@ -17,7 +17,7 @@ test.describe('Sign in', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
+    await ApiHelper.createUser(user);
   });
 
   test.beforeEach(async ({ page }) => {

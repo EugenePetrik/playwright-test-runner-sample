@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import { env } from '../../configs';
 import { HomePage } from '../../pageobjects/home';
-import { createUser, createFavoriteArticle, signInUser } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import type { IUser, IArticle } from '../../utils/types';
 
 test.describe('Home page for authorized user', () => {
@@ -22,13 +22,13 @@ test.describe('Home page for authorized user', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
-    await createFavoriteArticle(user, article);
+    await ApiHelper.createUser(user);
+    await ApiHelper.createFavoriteArticle(user, article);
   });
 
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
-    await signInUser(page, user);
+    await ApiHelper.loginToApp(page, user);
   });
 
   test('should have navigation bar', async () => {

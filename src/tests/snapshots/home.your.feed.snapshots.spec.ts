@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import faker from 'faker';
 import { HomePage } from '../../pageobjects/home';
-import { createUser, signInUser } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import type { IUser } from '../../utils/types';
 import userResponse from '../../data/mock/user.json';
 import yourFeedResponse from '../../data/mock/your.feed.json';
@@ -19,12 +19,12 @@ test.describe('Home page > Your feed - snapshots', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
+    await ApiHelper.createUser(user);
   });
 
   test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
-    await signInUser(page, user);
+    await ApiHelper.loginToApp(page, user);
   });
 
   test.describe('with articles', () => {

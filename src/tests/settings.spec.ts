@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import { env } from '../configs';
 import { SettingsPage } from '../pageobjects/settings.page';
-import { createUser, signInUser } from '../utils/api';
+import { ApiHelper } from '../utils/api.helper';
 import type { IUser } from '../utils/types';
 
 test.describe('Settings', () => {
@@ -15,13 +15,13 @@ test.describe('Settings', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
+    await ApiHelper.createUser(user);
   });
 
   test.beforeEach(async ({ page }) => {
-    settingsPage = new SettingsPage(page);
+    await ApiHelper.loginToApp(page, user);
 
-    await signInUser(page, user);
+    settingsPage = new SettingsPage(page);
     await settingsPage.open();
   });
 

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import { env } from '../../configs';
 import { ProfilePage } from '../../pageobjects/profile';
-import { createUser, createFavoriteArticle, signInUser } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import type { IUser, IArticle } from '../../utils/types';
 
 test.describe('Favorited articles', () => {
@@ -22,12 +22,12 @@ test.describe('Favorited articles', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
+    await ApiHelper.createUser(user);
   });
 
   test.beforeEach(async ({ page }) => {
     profilePage = new ProfilePage(page);
-    await signInUser(page, user);
+    await ApiHelper.loginToApp(page, user);
   });
 
   test.describe('without articles', () => {
@@ -45,7 +45,7 @@ test.describe('Favorited articles', () => {
 
   test.describe('with articles', () => {
     test.beforeAll(async () => {
-      await createFavoriteArticle(user, article);
+      await ApiHelper.createFavoriteArticle(user, article);
     });
 
     test.beforeEach(async () => {

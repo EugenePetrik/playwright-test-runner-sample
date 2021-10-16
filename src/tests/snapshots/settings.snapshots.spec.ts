@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import { SettingsPage } from '../../pageobjects/settings.page';
-import { createUserAndSignIn } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import type { IUser } from '../../utils/types';
 import userResponse from '../../data/mock/user.json';
 
@@ -17,7 +17,9 @@ test.describe('Settings page - snapshots', () => {
   test.beforeEach(async ({ page }) => {
     settingsPage = new SettingsPage(page);
 
-    await createUserAndSignIn(page, user);
+    await ApiHelper.createUser(user);
+    await ApiHelper.loginToApp(page, user);
+    
     await settingsPage.mockUserResponse(userResponse);
     await settingsPage.open();
   });

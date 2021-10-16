@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import faker from 'faker';
 import { ArticleDetailsPage } from '../../pageobjects/article';
-import { createUser, createArticle, signInUser } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import type { IArticle, IUser } from '../../utils/types';
 import userResponse from '../../data/mock/user.json';
 import detailsArticleResponse from '../../data/mock/article.json';
@@ -25,14 +25,14 @@ test.describe('Article Details page - snapshots', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
-    articleSlug = await createArticle(user, article);
+    await ApiHelper.createUser(user);
+    articleSlug = await ApiHelper.createArticle(user, article);
   });
 
   test.beforeEach(async ({ page }) => {
     articleDetailsPage = new ArticleDetailsPage(page);
 
-    await signInUser(page, user);
+    await ApiHelper.loginToApp(page, user);
     await articleDetailsPage.mockUserResponse(userResponse);
     await articleDetailsPage.mockDetailsArticleResponse(detailsArticleResponse);
     await articleDetailsPage.comment.mockCommentsResponse(commentsResponse);

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import dayjs from 'dayjs';
 import { env } from '../../configs';
-import { createUser, signInUser } from '../../utils/api';
+import { ApiHelper } from '../../utils/api.helper';
 import { NewArticlePage, ArticleDetailsPage } from '../../pageobjects/article';
 import type { IArticle, IUser } from '../../utils/types';
 
@@ -24,14 +24,14 @@ test.describe('Create a new article', () => {
   };
 
   test.beforeAll(async () => {
-    await createUser(user);
+    await ApiHelper.createUser(user);
   });
 
   test.beforeEach(async ({ page }) => {
     newArticlePage = new NewArticlePage(page);
     articleDetailsPage = new ArticleDetailsPage(page);
 
-    await signInUser(page, user);
+    await ApiHelper.loginToApp(page, user);
     await newArticlePage.open();
   });
 
