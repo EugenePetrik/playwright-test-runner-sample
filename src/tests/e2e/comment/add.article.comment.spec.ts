@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import dayjs from 'dayjs';
-import { env } from '../../configs';
-import { ApiHelper } from '../../utils/api.helper';
-import { ArticleDetailsPage } from '../../pageobjects/article';
-import type { IArticle, IComment, IUser } from '../../utils/types';
+import { env } from '../../../configs';
+import { ApiHelper } from '../../../utils/api.helper';
+import { ArticleDetailsPage } from '../../../pageobjects/article';
+import type { IArticle, IComment, IUser } from '../../../utils/types';
 
-test.describe('Delete article comment', () => {
+test.describe('Add a comment to the article', () => {
   let articleDetailsPage: ArticleDetailsPage;
   let articleSlug: string;
 
@@ -29,7 +29,7 @@ test.describe('Delete article comment', () => {
 
   test.beforeAll(async () => {
     await ApiHelper.createUser(user);
-    articleSlug = await ApiHelper.createArticleWithComment(user, article, comment);
+    articleSlug = await ApiHelper.createArticle(user, article);
   });
 
   test.beforeEach(async ({ page }) => {
@@ -50,9 +50,17 @@ test.describe('Delete article comment', () => {
     const commentPlaceholder = await articleDetailsPage.addCommentForm.getCommentPlaceholder();
     expect(commentPlaceholder).toEqual('Write a comment...');
 
+    const isCommentAuthorAvatarDisplayed =
+      await articleDetailsPage.addCommentForm.isCommentAuthorAvatarDisplayed();
+    expect(isCommentAuthorAvatarDisplayed).toBeTruthy;
+
     const isPostCommentButtonDisplayed =
       await articleDetailsPage.addCommentForm.isPostCommentButtonDisplayed();
     expect(isPostCommentButtonDisplayed).toBeTruthy;
+  });
+
+  test('should add a comment to the article', async () => {
+    await articleDetailsPage.addCommentForm.addCommentWith(comment);
 
     const commentBody = await articleDetailsPage.comment.getCommentBody();
     expect(commentBody).toEqual(comment.body);
@@ -70,12 +78,5 @@ test.describe('Delete article comment', () => {
     const isDeleteCommentButtonDisplayed =
       await articleDetailsPage.comment.isDeleteCommentButtonDisplayed();
     expect(isDeleteCommentButtonDisplayed).toBeTruthy;
-  });
-
-  test('should delete article comment', async () => {
-    await articleDetailsPage.comment.deleteArticleComment();
-
-    const isArticleCommentDisplayed = await articleDetailsPage.comment.isArticleCommentDisplayed();
-    expect(isArticleCommentDisplayed).toBeFalsy;
   });
 });

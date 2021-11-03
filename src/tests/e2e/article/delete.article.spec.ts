@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
-import { env } from '../../configs';
-import { ApiHelper } from '../../utils/api.helper';
-import { HomePage } from '../../pageobjects/home';
-import { ArticleDetailsPage } from '../../pageobjects/article';
-import type { IArticle, IUser } from '../../utils/types';
+import { env } from '../../../configs';
+import { ApiHelper } from '../../../utils/api.helper';
+import { HomePage } from '../../../pageobjects/home';
+import { ArticleDetailsPage } from '../../../pageobjects/article';
+import type { IArticle, IUser } from '../../../utils/types';
 
 test.describe('Delete an article', () => {
   let articleDetailsPage: ArticleDetailsPage;

@@ -62,7 +62,7 @@ const config: PlaywrightTestConfig = {
       },
     },
     {
-      name: 'Pixel 4',
+      name: 'Pixel4',
       use: {
         locale: 'fr-FR',
         geolocation: { longitude: 48.858455, latitude: 2.294474 },
@@ -73,7 +73,7 @@ const config: PlaywrightTestConfig = {
       },
     },
     {
-      name: 'iPhone 11',
+      name: 'iPhone11',
       use: {
         locale: 'fr-FR',
         geolocation: { longitude: 48.858455, latitude: 2.294474 },

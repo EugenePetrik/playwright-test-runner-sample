@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
-import { env } from '../../configs';
-import { HomePage } from '../../pageobjects/home';
-import { ApiHelper } from '../../utils/api.helper';
-import type { IUser, IArticle } from '../../utils/types';
+import { env } from '../../../configs';
+import { HomePage } from '../../../pageobjects/home';
+import { ApiHelper } from '../../../utils/api.helper';
+import type { IUser, IArticle } from '../../../utils/types';
 
 test.describe('Home page for authorized user', () => {
   let homePage: HomePage;

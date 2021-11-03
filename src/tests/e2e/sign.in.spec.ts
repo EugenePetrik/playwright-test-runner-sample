@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
-import { env } from '../configs';
-import { SignInPage } from '../pageobjects/sign.in.page';
-import { HomePage } from '../pageobjects/home';
-import { ApiHelper } from '../utils/api.helper';
-import type { IUser } from '../utils/types';
+import { env } from '../../configs';
+import { SignInPage } from '../../pageobjects/sign.in.page';
+import { HomePage } from '../../pageobjects/home';
+import { ApiHelper } from '../../utils/api.helper';
+import type { IUser } from '../../utils/types';
 
 test.describe('Sign in', () => {
   let homePage: HomePage;

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
 import dayjs from 'dayjs';
-import { env } from '../../configs';
-import { ApiHelper } from '../../utils/api.helper';
-import { NewArticlePage, ArticleDetailsPage } from '../../pageobjects/article';
-import type { IArticle, IUser } from '../../utils/types';
+import { env } from '../../../configs';
+import { ApiHelper } from '../../../utils/api.helper';
+import { NewArticlePage, ArticleDetailsPage } from '../../../pageobjects/article';
+import type { IArticle, IUser } from '../../../utils/types';
 
 test.describe('Create a new article', () => {
   let newArticlePage: NewArticlePage;

@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import faker from 'faker';
-import { env } from '../../configs';
-import { ProfilePage } from '../../pageobjects/profile';
-import { ApiHelper } from '../../utils/api.helper';
-import type { IUser, IArticle } from '../../utils/types';
+import { env } from '../../../configs';
+import { ProfilePage } from '../../../pageobjects/profile';
+import { ApiHelper } from '../../../utils/api.helper';
+import type { IUser, IArticle } from '../../../utils/types';
 
-test.describe('My articles', () => {
+test.describe('Favorited articles', () => {
   let profilePage: ProfilePage;
 
   const user: IUser = {
@@ -33,21 +33,24 @@ test.describe('My articles', () => {
   test.describe('without articles', () => {
     test.beforeEach(async () => {
       await profilePage.open(user.username);
+      await profilePage.favoritedArticles.clickFavoritedArticlesTab();
     });
 
     test('should not display articles', async () => {
-      const articlesEmptyText = await profilePage.myArticles.articleBlock.getArticlesEmptyText();
+      const articlesEmptyText =
+        await profilePage.favoritedArticles.articleBlock.getArticlesEmptyText();
       expect(articlesEmptyText).toEqual('No articles are here... yet.');
     });
   });
 
   test.describe('with articles', () => {
     test.beforeAll(async () => {
-      await ApiHelper.createArticle(user, article);
+      await ApiHelper.createFavoriteArticle(user, article);
     });
 
     test.beforeEach(async () => {
       await profilePage.open(user.username);
+      await profilePage.favoritedArticles.clickFavoritedArticlesTab();
     });
 
     test('should open the page', async () => {
@@ -63,17 +66,17 @@ test.describe('My articles', () => {
       expect(isEditProfileButtonVisible).toBeTruthy;
 
       const pageUrl = await profilePage.getPageUrl();
-      expect(pageUrl).toEqual(`${env.APP_URL}/@${username}`);
+      expect(pageUrl).toEqual(`${env.APP_URL}/@${username}/favorites`);
 
       const pageTitle = await profilePage.getPageTitle();
       expect(pageTitle).toEqual('Conduit');
     });
 
     test('should display articles', async () => {
-      const articlesLength = await profilePage.myArticles.articleBlock.getArticlesLength();
+      const articlesLength = await profilePage.favoritedArticles.articleBlock.getArticlesLength();
       expect(articlesLength).toEqual(1);
 
-      const articlesTitles = await profilePage.myArticles.articleBlock.getArticleTitles();
+      const articlesTitles = await profilePage.favoritedArticles.articleBlock.getArticleTitles();
       expect(articlesTitles).toEqual([article.title]);
     });
   });
