@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import type { Options, Method, Response, GotRequestFunction } from 'got';
 import got from 'got';
 import { CookieJar } from 'tough-cookie';
