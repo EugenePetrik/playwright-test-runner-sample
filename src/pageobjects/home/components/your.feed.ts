@@ -18,7 +18,10 @@ export class YourFeed {
   public async clickYourFeedTab(): Promise<void> {
     logger.debug('Click on the "Global Feed" tab on the Home page');
 
-    await Promise.all([this.page.waitForNavigation(), await this.page.click(home.tabs.yourFeed)]);
+    await Promise.all([
+      this.page.waitForNavigation(),
+      this.page.click(home.tabs.yourFeed)
+    ]);
   }
 
   public async isYourFeedTabDisplayed(): Promise<boolean> {
@@ -30,7 +33,7 @@ export class YourFeed {
   async mockYourFeedResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Your Feed request - /api/articles/feed?offset=0&limit=10`);
 
-    await this.page.route('**/api/articles/feed?offset=0&limit=10', (route) => {
+    await this.page.route('**/api/articles/feed?offset=0&limit=10', (route: any) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

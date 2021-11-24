@@ -30,7 +30,10 @@ export class SignInPage extends BasePage {
     await this.page.fill(signIn.emailInput, email);
     await this.page.fill(signIn.passwordInput, password);
 
-    await Promise.all([this.page.waitForNavigation(), await this.page.click(signIn.signInButton)]);
+    await Promise.all([
+      this.page.waitForNavigation(),
+      this.page.click(signIn.signInButton)
+    ]);
   }
 
   public async getPageHeader(): Promise<string> {

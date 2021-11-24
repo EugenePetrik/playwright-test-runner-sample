@@ -59,7 +59,7 @@ export class Comment {
 
     await Promise.all([
       this.page.waitForResponse('**/comments/**'),
-      await this.page.click(articles.details.comment.deleteComment),
+      this.page.click(articles.details.comment.deleteComment),
     ]);
   }
 

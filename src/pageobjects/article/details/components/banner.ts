@@ -56,7 +56,7 @@ export class Banner {
 
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(articles.details.banner.deleteArticleButton),
+      this.page.click(articles.details.banner.deleteArticleButton),
     ]);
   }
 }

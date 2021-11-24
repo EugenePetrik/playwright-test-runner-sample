@@ -20,14 +20,14 @@ export class FavoritedArticles {
 
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(profile.tabs.favoritedArticles),
+      this.page.click(profile.tabs.favoritedArticles),
     ]);
   }
 
   async mockFavoritedArticlesResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the Favorited Articles request - /api/articles?favorited=`);
 
-    await this.page.route('**/articles?offset=0&limit=5&favorited=**', (route) => {
+    await this.page.route('**/articles?offset=0&limit=5&favorited=**', (route: any) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

@@ -81,7 +81,7 @@ export class EditArticlePage extends BasePage {
 
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(articles.edit.publishArticleButton),
+      this.page.click(articles.edit.publishArticleButton),
     ]);
   }
 

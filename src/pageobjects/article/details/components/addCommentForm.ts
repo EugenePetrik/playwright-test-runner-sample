@@ -40,7 +40,7 @@ export class AddCommentForm {
 
     await Promise.all([
       this.page.waitForResponse('**/comments'),
-      await this.page.click(articles.details.addComment.postCommentButton),
+      this.page.click(articles.details.addComment.postCommentButton),
     ]);
   }
 }

@@ -63,7 +63,7 @@ export class SettingsPage extends BasePage {
     logger.debug('Click on the Log Out button on the Settings page');
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(settings.logOutButton),
+      this.page.click(settings.logOutButton),
     ]);
   }
 }

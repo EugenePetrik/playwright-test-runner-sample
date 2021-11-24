@@ -20,14 +20,14 @@ export class MyArticles {
 
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(profile.tabs.myArticles),
+      this.page.click(profile.tabs.myArticles),
     ]);
   }
 
   async mockMyArticlesResponse(data: any): Promise<void> {
     logger.debug(`Mock API data for the My Articles request - /api/articles?author=`);
 
-    await this.page.route('**/articles?offset=0&limit=5&author=**', (route) => {
+    await this.page.route('**/articles?offset=0&limit=5&author=**', (route: any) => {
       route.fulfill({
         status: 200,
         headers: { 'Access-Control-Allow-Origin': '*' },

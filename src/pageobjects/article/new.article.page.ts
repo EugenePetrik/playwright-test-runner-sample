@@ -62,7 +62,7 @@ export class NewArticlePage extends BasePage {
 
     await Promise.all([
       this.page.waitForNavigation(),
-      await this.page.click(articles.new.publishArticleButton),
+      this.page.click(articles.new.publishArticleButton),
     ]);
   }
 }
